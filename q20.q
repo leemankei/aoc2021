@@ -133,10 +133,16 @@ findN:{[i;x] w: count i 0; x + (-1 + neg w;neg w;1 + neg w; -1; 0; 1; w - 1; w; 
 expand:{[i] i:00b,/:i,\:00b; e,i,(e:2#enlist count[i 0]#0b) };
 toDec:{ 2 sv x };
 p:{[i] w:count i 0; d:count i; (1 + w * 1 + til d - 2) +\:til w - 2  }; // FIXME
-sum sum each res:
-{[i] 
-    a toDec @/:/: raze[i] findN[i] each/: p i:expand i
-}/[2;i]
 
-count i
-count res 0
+x:expand/[2;i];
+sum sum each res:{[x] 
+    a toDec @/:/: raze[x] findN[x] each/: p x
+}/[2;x]
+
+/
+50 times
+\
+x:expand/[50;i];
+sum sum each res:{[x] 
+    a toDec @/:/: raze[x] findN[x] each/: p x
+}/[50;x]
